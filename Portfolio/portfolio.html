@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Niraad's Portfolio</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 120px;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.5;
+            }
+
+            /* ---------- header + nav ---------- */
+            header {
+                text-align: center;
+                background-color: beige;
+                padding: 5px;
+                position: sticky;
+                top: 0;
+                border-bottom: 2px solid tan;
+            }
+
+            ul.nav {
+                list-style-type: none;
+                background-color: beige;
+                overflow: hidden;
+                margin: 0;
+                padding: 10px;
+                justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 100px;
+            }
+
+            ul.nav a {
+                text-decoration: none;
+                color: maroon;
+                font-weight: bold;
+            }
+
+            ul.nav a:hover {
+                text-decoration: underline;
+            }
+
+            /* ---------- sections ---------- */
+            section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 30px 20px;
+                border-bottom: 1px solid lightgray;
+            }
+
+            section h2 {
+                border-bottom: 2px solid tan;
+                margin-bottom: 12px;
+                padding-bottom: 3px;
+            }
+
+            h3 {
+                margin-top: 14px;
+            }
+
+            p {
+                margin: 6px 0;
+            }
+
+            /* ---------- home ---------- */
+            #home {
+                text-align: center;
+                background-color: beige;
+                border-bottom: 2px solid tan;
+                max-width: none;
+                padding: 50px 20px;
+            }
+
+            #home h2 {
+                border: none;
+                font-size: 32px;
+            }
+
+            .tagline {
+                font-style: italic;
+            }
+
+            /* ---------- skills ---------- */
+            .pills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                list-style-type: none;
+            }
+
+            .pills li {
+                background-color: beige;
+                border: 1px solid tan;
+                border-radius: 12px;
+                padding: 3px 10px;
+                font-size: 14px;
+            }
+
+            /* ---------- projects ---------- */
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            .card {
+                border: 1px solid tan;
+                border-radius: 6px;
+                padding: 12px;
+            }
+
+            .card:hover {
+                background-color: beige;
+            }
+
+            .card h3 {
+                margin-top: 0;
+                font-size: 16px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            /* ---------- experience ---------- */
+            .job {
+                margin-bottom: 14px;
+            }
+
+            .job-head {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                font-weight: bold;
+            }
+
+            .job-date {
+                font-weight: normal;
+                font-style: italic;
+            }
+
+            .job ul {
+                margin: 4px 0 0 20px;
+                font-size: 14px;
+            }
+
+            /* ---------- education table ---------- */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 8px;
+                font-size: 14px;
+            }
+
+            th {
+                background-color: beige;
+            }
+
+            th, td {
+                border: 1px solid tan;
+                padding: 5px 8px;
+                text-align: left;
+            }
+
+            /* ---------- contact ---------- */
+            #contact ul {
+                list-style-type: none;
+            }
+
+            #contact li {
+                margin: 6px 0;
+            }
+
+            footer {
+                text-align: center;
+                background-color: beige;
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            /* ---------- small screens ---------- */
+            @media (max-width: 700px) {
+                ul.nav {
+                    gap: 20px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Niraad's Portfolio</h1>
+            <ul class="nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </header>
+
+        <section id="home">
+            <h2>Niraad Siddharth Bhuva</h2>
+            <p class="tagline">System Administrator | Full-Stack Web Developer</p>
+            <p>Bangalore, India &nbsp;|&nbsp; +91 9606762228 &nbsp;|&nbsp; niraadbhuva@gmail.com</p>
+            <p style="margin-top:14px;">
+                <a href="#projects">See Projects</a> &nbsp;&nbsp;
+                <a href="resume.html">View Resume</a>
+            </p>
+        </section>
+
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                Technically driven System Administrator and BCA graduate with hands-on experience
+                managing high-availability server environments, network routing, and hardware
+                optimization. Full-stack web developer (HTML, CSS, JavaScript, Node.js) with
+                experience leading small dev teams and running self-hosted infrastructure.
+            </p>
+
+            <h3>Experience</h3>
+
+            <div class="job">
+                <div class="job-head">
+                    <span>Tech Lead / Developer, Saiahar Sanman PVT LTD</span>
+                    <span class="job-date">03/2025 - Present</span>
+                </div>
+                <ul>
+                    <li>Led a team building websites; handled content writing and back-end admin work.</li>
+                    <li>Worked as sales representative at exhibitions.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span>Intern, Achivr Sports</span>
+                    <span class="job-date">04/2026 - 07/2026</span>
+                </div>
+                <ul>
+                    <li>Built a WhatsApp bot for the company.</li>
+                    <li>Worked on an AI recruiter dashboard and AI automation proposals.</li>
+                    <li>Contributed to Instagram content strategy and revamp.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span>Intern (Full Stack Web Development), Prinston Smart Engineers</span>
+                    <span class="job-date">02/2025 - 03/2025</span>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span>Independent Infrastructure Lead, Home Lab Operations</span>
+                    <span class="job-date">2022 - Present</span>
+                </div>
+                <ul>
+                    <li>Deployed and manage a home server (CasaOS + Docker) running 10+ containers.</li>
+                    <li>Secured remote access with Cloudflare Tunnels and Zero Trust, removing port forwarding.</li>
+                    <li>Ran a high-performance Minecraft Fabric SMP with BlueMap and DokuWiki docs at 99.9% uptime.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span>Hardware &amp; Systems Specialist, Freelance</span>
+                    <span class="job-date">2012 - Present</span>
+                </div>
+                <ul>
+                    <li>Resolved Nvidia/Intel Optimus and compositor-level hardware conflicts.</li>
+                    <li>Packaged Qualcomm drivers into custom Magisk modules for LineageOS.</li>
+                    <li>Configured multi-AP networks and static IPs; thermal repasting and diagnostics.</li>
+                </ul>
+            </div>
+
+            <h3>Education</h3>
+            <table>
+                <tr>
+                    <th>Degree</th>
+                    <th>Institution</th>
+                    <th>Year</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>BCA</td>
+                    <td>New Horizon College, Marathalli</td>
+                    <td>2025</td>
+                    <td>81%</td>
+                </tr>
+                <tr>
+                    <td>PUC</td>
+                    <td>Miranda Institutions, Bangalore</td>
+                    <td>2022</td>
+                    <td>54%</td>
+                </tr>
+                <tr>
+                    <td>ICSE</td>
+                    <td>The Cathedral High School, Bangalore</td>
+                    <td>2020</td>
+                    <td>74%</td>
+                </tr>
+            </table>
+
+            <h3>Certifications</h3>
+            <ul class="pills">
+                <li>Software Testing, Alpha Tech Academy</li>
+                <li>CCNA, ASH Career Development Center</li>
+                <li>Fullstack Web Dev Internship, Prinston Smart Engineers</li>
+                <li>Build an AI Agent in Python, Boot.dev</li>
+                <li>Functional Programming in Python, Boot.dev</li>
+                <li>Object Oriented Programming in Python, Boot.dev</li>
+                <li>Introduction to Python, Boot.dev</li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul class="pills">
+                <li>Docker</li>
+                <li>Linux (Ubuntu / Debian / LineageOS)</li>
+                <li>CasaOS</li>
+                <li>Cloudflare Tunnels / Zero Trust</li>
+                <li>Networking (LAN/WAN)</li>
+                <li>HTML / CSS / JavaScript</li>
+                <li>Node.js</li>
+                <li>Python</li>
+                <li>SEO</li>
+                <li>Agile</li>
+                <li>PC Building &amp; Repair</li>
+                <li>Hardware Diagnostics</li>
+                <li>Technical Writing</li>
+                <li>Discord Bots</li>
+                <li>Leadership</li>
+                <li>Excel / Word</li>
+                <li>Content Creation</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Achivr WhatsApp Bot</h3>
+                    <p>WhatsApp bot built for Achivr Sports during my internship.</p>
+                </div>
+                <div class="card">
+                    <h3>AI Recruiter Dashboard</h3>
+                    <p>AI-assisted recruiter dashboard for Achivr Sports. Next.js and TypeScript app with templating and database seeding.</p>
+                </div>
+                <div class="card">
+                    <h3>Elytar, Skin Avatar API</h3>
+                    <p>High-performance Minotar-like skin avatar API for Ely.by, built with .NET 9 and SixLabors.ImageSharp, deployed with Docker.</p>
+                </div>
+                <div class="card">
+                    <h3>OP3T Webcam</h3>
+                    <p>Turned a OnePlus 3T rear camera into a low-latency USB webcam on Windows using an ADB tunnel and hardware H.264 encoding.</p>
+                </div>
+                <div class="card">
+                    <h3>BRO TOYZz Landing Page</h3>
+                    <p>Static single-page marketing site on a custom design system, packaged with Docker and fronted by Cloudflare.</p>
+                </div>
+                <div class="card">
+                    <h3>Boot.dev AI Agent</h3>
+                    <p>Python AI agent covering LLM API integration, tool use and function calling, and automated code execution.</p>
+                </div>
+                <div class="card">
+                    <h3>EzNir</h3>
+                    <p>Custom RPG Maker game, built and packaged for Windows and phone.</p>
+                </div>
+                <div class="card">
+                    <h3>anniRPG</h3>
+                    <p>Python and Pygame RPG with a custom GUI.</p>
+                </div>
+                <div class="card">
+                    <h3>Skin Server &amp; Discord Bot Hosting</h3>
+                    <p>End-to-end pipeline hosting skin assets and dynamic web maps, plus JavaScript Discord bots for whitelisting and moderation, all on Docker.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <ul>
+                <li>Email: <a href="mailto:niraadbhuva@gmail.com">niraadbhuva@gmail.com</a></li>
+                <li>Phone: <a href="tel:+919606762228">+91 9606762228</a></li>
+                <li>GitHub: <a href="https://github.com/Megalodon-Sharky">github.com/Megalodon-Sharky</a></li>
+                <li>Location: Bangalore, Karnataka, India</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Built with plain HTML and CSS by Niraad Siddharth Bhuva.</p>
+        </footer>
+    </body>
+</html>
