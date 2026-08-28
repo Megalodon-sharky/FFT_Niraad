@@ -138,7 +138,9 @@
             transform: translateY(-1px);
         }
 
-        input:not(:placeholder-shown):invalid { border-color: #e0574d; }
+        /* :user-invalid only fires after the field has been interacted with,
+           so empty date/select fields do not flag red on first paint. */
+        input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: #e0574d; }
 
         .options {
             display: flex;
