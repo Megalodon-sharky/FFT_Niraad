@@ -7,321 +7,370 @@
     <title>Facebook Login Page</title>
     <style>
         :root {
-            --fb-blue: #0866ff;
+            --blue: #0064e0;
+            --blue-hover: #0055c0;
+            --brand: #0866ff;
             --accent: #1877f2;
-            --ink: #1c1e21;
-            --headline: #111112;
-            --input-border: #d0d3d6;
-            --muted: #737373;
-            --card: #ffffff;
+            --text: #111112;
+            --text-soft: #1c1e21;
+            --muted: #65676b;
+            --field-border: #d0d3d6;
+            --divider: #dfe2e5;
+            --footer-line: #dadde1;
         }
 
         * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: var(--card);
-            color: var(--ink);
+            background: #fff;
+            color: var(--text-soft);
             font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
         }
 
-        /* ---------- top-left brand mark ---------- */
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 24px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--fb-blue);
+        /* ---------- two panel split ---------- */
+        .split {
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 40px;
-            line-height: 1;
-            color: #fff;
-            font-family: Georgia, "Times New Roman", serif;
+            min-height: 790px;
+        }
+
+        /* ---------- left panel ---------- */
+        .promo {
+            position: relative;
+            flex: 0 0 630px;
+            border-right: 2px solid var(--divider);
             overflow: hidden;
         }
 
-        .logo span { transform: translateY(3px); }
-
-        /* ---------- main split ---------- */
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 28px;
-            width: 100%;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 40px 16px;
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
         }
 
-        .left {
-            flex: 1 1 500px;
-            max-width: 520px;
-            padding-right: 12px;
+        .headline {
+            position: absolute;
+            left: 40px;
+            bottom: 44px;
+            width: 260px;
+            margin: 0;
+            font-size: 52px;
+            font-weight: 600;
+            line-height: 66px;
+            letter-spacing: -1px;
+            color: var(--text);
         }
 
-        /* collage approximation */
+        .headline .love { color: var(--accent); }
+
+        /* Stand-in for the promotional collage on the live page. */
         .collage {
-            position: relative;
-            height: 250px;
-            margin-bottom: 18px;
+            position: absolute;
+            top: 0;
+            left: 126px;
+            width: 504px;
+            height: 100%;
         }
 
         .tile {
             position: absolute;
             border-radius: 18px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+            background: #e9ebee;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
         }
 
-        .t1 { width: 120px; height: 180px; left: 130px; top: 10px; background: #5aa9dd; }
-        .t2 { width: 92px;  height: 92px;  left: 70px;  top: 40px; background: #e8926b; }
-        .t3 { width: 84px;  height: 110px; left: 96px;  top: 120px; background: #c46bab; }
-        .t4 { width: 74px;  height: 74px;  left: 208px; top: 150px; background: #92dcb3; }
-
-        .avatar {
-            position: absolute;
-            left: 168px;
-            top: 168px;
-            width: 66px;
-            height: 66px;
-            border-radius: 50%;
-            border: 4px solid var(--accent);
-            background: #f0bd93;
+        .tile.phone {
+            top: 120px;
+            left: 150px;
+            width: 210px;
+            height: 330px;
+            border-radius: 26px;
+            background: #cfe3f5;
+            border: 6px solid #fff;
         }
 
-        .emoji {
+        .tile.card-a {
+            top: 210px;
+            left: 30px;
+            width: 130px;
+            height: 110px;
+            background: #dfe3e8;
+        }
+
+        .tile.card-b {
+            top: 330px;
+            left: 60px;
+            width: 160px;
+            height: 130px;
+            background: #eceff3;
+        }
+
+        .tile.card-c {
+            top: 400px;
+            left: 250px;
+            width: 150px;
+            height: 120px;
+            background: #e4e8ee;
+        }
+
+        .bubble {
             position: absolute;
-            width: 40px;
-            height: 40px;
             border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 26px;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .16);
         }
 
-        .e1 { left: 60px; top: 20px; }
-        .e2 { left: 236px; top: 96px; background: #f3425f; }
+        .bubble.b1 { top: 150px; left: 40px;  width: 54px; height: 54px; }
+        .bubble.b2 { top: 330px; left: 330px; width: 50px; height: 50px; }
 
-        h1.headline {
-            font-size: 52px;
-            font-weight: 600;
-            line-height: 1.06;
-            letter-spacing: -1px;
-            color: var(--headline);
-            margin: 0;
+        .avatar {
+            position: absolute;
+            top: 380px;
+            left: 175px;
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: #b9c4d0;
+            border: 5px solid #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
         }
 
-        h1.headline .love { color: var(--accent); }
-
-        /* ---------- divider ---------- */
-        .divider {
-            flex: 0 0 1px;
-            height: 380px;
-            background: #dadde1;
+        /* ---------- right panel ---------- */
+        .login {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 171px 60px 40px;
         }
 
-        /* ---------- login column ---------- */
-        .right {
-            flex: 0 0 396px;
-            max-width: 396px;
-        }
+        .form-col { width: 529px; }
 
-        .right h2 {
+        .form-col h2 {
+            margin: 0 0 16px;
             font-size: 20px;
             font-weight: 600;
-            color: var(--ink);
-            margin: 0 0 12px;
+            color: var(--text-soft);
         }
 
-        .right input {
+        .field {
             width: 100%;
-            height: 56px;
-            padding: 0 18px;
-            margin-bottom: 14px;
+            height: 60px;
+            padding: 0 16px;
+            margin-bottom: 12px;
+            font-family: inherit;
             font-size: 15px;
-            color: var(--ink);
-            background: var(--card);
-            border: 0.8px solid var(--input-border);
+            color: var(--text);
+            background: #fff;
+            border: 1px solid var(--field-border);
             border-radius: 16px;
             outline: none;
             transition: border-color .15s, box-shadow .15s;
         }
 
-        .right input::placeholder { color: #62676b; }
+        .field::placeholder { color: var(--muted); }
 
-        .right input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px #e7f3ff;
+        .field:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 2px rgba(0, 100, 224, .18);
         }
 
-        .btn {
+        .pill {
             display: block;
             width: 100%;
-            border: none;
-            border-radius: 16px;
+            height: 44px;
+            border-radius: 22px;
             font-family: inherit;
-            cursor: pointer;
-        }
-
-        .btn-login {
-            height: 56px;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 600;
-            color: #fff;
-            background: var(--fb-blue);
+            cursor: pointer;
             transition: background-color .15s;
         }
 
-        .btn-login:hover { background: #0356d6; }
+        .pill-primary {
+            margin-top: 12px;
+            border: none;
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .pill-primary:hover { background: var(--blue-hover); }
 
         .forgot {
             display: block;
             width: fit-content;
-            margin: 18px auto 20px;
-            color: var(--ink);
+            margin: 24px auto;
             font-size: 15px;
-            font-weight: 600;
+            color: var(--blue);
             text-decoration: none;
         }
 
         .forgot:hover { text-decoration: underline; }
 
-        .btn-create {
-            height: 52px;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--accent);
-            background: var(--card);
-            border: 1px solid var(--accent);
-            transition: background-color .15s;
+        .pill-secondary {
+            background: #fff;
+            border: 1px solid var(--blue);
+            color: var(--blue);
         }
 
-        .btn-create:hover { background: #f5f9ff; }
+        .pill-secondary:hover { background: #f2f7ff; }
 
-        .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+        .pill:focus-visible,
+        .forgot:focus-visible {
+            outline: 2px solid var(--text-soft);
+            outline-offset: 2px;
+        }
 
         .meta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 22px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #1c2b33;
+            display: block;
+            margin: 28px auto 0;
         }
 
-        .meta .inf {
-            font-size: 20px;
-            transform: scaleX(1.4);
-            color: #1c2b33;
-        }
-
-        /* ---------- language footer ---------- */
+        /* ---------- footer ---------- */
         footer {
-            padding: 22px 16px 30px;
+            padding: 20px 32px 32px;
+            font-size: 12px;
+            color: var(--muted);
         }
 
-        .langs {
+        footer ul {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px 20px;
+            gap: 6px 18px;
             list-style: none;
-            margin: 0 auto;
+            margin: 0;
             padding: 0;
-            max-width: 700px;
         }
 
-        .langs a {
+        footer a {
             color: var(--muted);
-            font-size: 13px;
             text-decoration: none;
         }
 
-        .langs a:hover { text-decoration: underline; }
+        footer a:hover { text-decoration: underline; }
 
-        /* ---------- responsive ---------- */
-        @media (max-width: 900px) {
-            main {
-                flex-direction: column;
-                gap: 24px;
-                padding-top: 80px;
+        .languages { padding-bottom: 14px; }
+
+        .sitemap {
+            border-top: 1px solid var(--footer-line);
+            padding-top: 14px;
+        }
+
+        .copyright { margin: 14px 0 0; }
+
+        /* ---------- narrow screens ---------- */
+        @media (max-width: 1100px) {
+            .split { flex-direction: column; min-height: 0; }
+
+            .promo {
+                flex: none;
+                height: 420px;
+                border-right: none;
+                border-bottom: 2px solid var(--divider);
             }
 
-            .left { text-align: center; flex-basis: auto; padding-right: 0; }
-            .collage { max-width: 320px; margin-left: auto; margin-right: auto; }
-            h1.headline { font-size: 34px; }
-            .divider { display: none; }
-            .right { flex-basis: auto; width: 100%; max-width: 396px; }
+            .collage { left: 50%; transform: translateX(-50%) scale(.55); transform-origin: top center; }
+            .headline { font-size: 34px; line-height: 42px; bottom: 24px; }
+            .login { padding: 40px 20px; }
+            .form-col { width: 100%; max-width: 529px; }
         }
     </style>
 </head>
 
 <body>
-    <div class="logo"><span>f</span></div>
+    <div class="split">
+        <section class="promo">
+            <svg class="logo" width="72" height="72" viewBox="0 0 72 72" aria-label="Facebook">
+                <circle cx="36" cy="36" r="36" fill="#0866ff" />
+                <path fill="#fff"
+                      d="M44.5 24.5h-4.2c-1.1 0-1.8.7-1.8 1.9V31h6l-.8 6.2h-5.2V54h-6.4V37.2H27V31h5.1v-5.4c0-5 3-7.6 7.6-7.6h4.8z" />
+            </svg>
 
-    <main>
-        <section class="left">
-            <div class="collage">
-                <div class="tile t1"></div>
-                <div class="tile t2"></div>
-                <div class="tile t3"></div>
-                <div class="tile t4"></div>
+            <div class="collage" aria-hidden="true">
+                <div class="tile card-a"></div>
+                <div class="tile phone"></div>
+                <div class="tile card-b"></div>
+                <div class="tile card-c"></div>
+                <div class="bubble b1">&#128516;</div>
+                <div class="bubble b2">&#10084;</div>
                 <div class="avatar"></div>
-                <div class="emoji e1">😂</div>
-                <div class="emoji e2">❤️</div>
             </div>
+
             <h1 class="headline">Explore the things <span class="love">you love</span>.</h1>
         </section>
 
-        <div class="divider"></div>
+        <section class="login">
+            <div class="form-col">
+                <h2>Log in to Facebook</h2>
 
-        <section class="right">
-            <h2>Log in to Facebook</h2>
-            <form>
-                <label for="email" hidden>Email address or mobile number</label>
-                <input type="text" id="email" name="email"
-                       placeholder="Email address or mobile number" required>
+                <form>
+                    <label for="email" hidden>Email address or mobile number</label>
+                    <input class="field" type="text" id="email" name="email"
+                           placeholder="Email address or mobile number" required>
 
-                <label for="pass" hidden>Password</label>
-                <input type="password" id="pass" name="pass"
-                       placeholder="Password" minlength="6" required>
+                    <label for="pass" hidden>Password</label>
+                    <input class="field" type="password" id="pass" name="pass"
+                           placeholder="Password" required>
 
-                <button type="submit" class="btn btn-login">Log in</button>
-            </form>
+                    <button class="pill pill-primary" type="submit">Log in</button>
+                </form>
 
-            <a class="forgot" href="#">Forgotten password?</a>
+                <a class="forgot" href="#">Forgotten password?</a>
 
-            <button type="button" class="btn btn-create">Create new account</button>
+                <button class="pill pill-secondary" type="button">Create new account</button>
 
-            <div class="meta"><span class="inf">&#8734;</span> Meta</div>
+                <svg class="meta" width="60" height="12" viewBox="0 0 60 12" aria-label="Meta">
+                    <text x="30" y="10" text-anchor="middle"
+                          font-family="Helvetica, Arial, sans-serif" font-size="11"
+                          font-weight="600" fill="#65676b">Meta</text>
+                </svg>
+            </div>
         </section>
-    </main>
+    </div>
 
     <footer>
-        <ul class="langs">
+        <ul class="languages">
             <li><a href="#">English (UK)</a></li>
-            <li><a href="#">ಕನ್ನಡ</a></li>
-            <li><a href="#">اردو</a></li>
-            <li><a href="#">मराठी</a></li>
-            <li><a href="#">తెలుగు</a></li>
-            <li><a href="#">हिन्दी</a></li>
-            <li><a href="#">தமிழ்</a></li>
-            <li><a href="#">More languages…</a></li>
+            <li><a href="#">&#3221;&#3240;&#3277;&#3240;&#3233;</a></li>
+            <li><a href="#">&#1575;&#1585;&#1583;&#1608;</a></li>
+            <li><a href="#">&#2350;&#2352;&#2366;&#2336;&#2368;</a></li>
+            <li><a href="#">&#3108;&#3142;&#3122;&#3137;&#3095;&#3137;</a></li>
+            <li><a href="#">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</a></li>
+            <li><a href="#">&#2980;&#2990;&#3007;&#2996;&#3021;</a></li>
+            <li><a href="#">More languages&#8230;</a></li>
         </ul>
+
+        <ul class="sitemap">
+            <li><a href="#">Sign up</a></li>
+            <li><a href="#">Log in</a></li>
+            <li><a href="#">Messenger</a></li>
+            <li><a href="#">Facebook Lite</a></li>
+            <li><a href="#">Video</a></li>
+            <li><a href="#">Meta Pay</a></li>
+            <li><a href="#">Meta Store</a></li>
+            <li><a href="#">Meta Quest</a></li>
+            <li><a href="#">Ray-Ban Meta</a></li>
+            <li><a href="#">Meta AI</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Threads</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Privacy Centre</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Create ad</a></li>
+            <li><a href="#">Create Page</a></li>
+            <li><a href="#">Developers</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">AdChoices</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Contact uploading and non-users</a></li>
+        </ul>
+
+        <p class="copyright">Meta &copy; 2026</p>
     </footer>
 </body>
 
