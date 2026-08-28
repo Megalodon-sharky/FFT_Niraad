@@ -1,11 +1,7 @@
-# Ignore everything...
 *
-
-# ...then allow back only what this repo publishes.
-# A "!" rule only re-includes something an earlier rule already excluded,
-# so the "*" above has to come first or these lines do nothing.
 !.gitattributes
 !.gitignore
 !portfolio.html
 !resume.html
 !student_reg_form.html
+!facebook_login.html
