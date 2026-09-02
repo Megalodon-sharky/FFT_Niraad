@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Department of Computer Science</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 130px;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.5;
+            }
+
+            /* ---------- header + nav ---------- */
+            header {
+                text-align: center;
+                background-color: honeydew;
+                padding: 12px 5px 0;
+                position: sticky;
+                top: 0;
+                border-bottom: 2px solid darkseagreen;
+            }
+
+            header h1 {
+                color: darkgreen;
+                font-size: 26px;
+            }
+
+            .tagline {
+                font-style: italic;
+                font-size: 14px;
+            }
+
+            nav ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 25px;
+                padding: 10px;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: darkgreen;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            nav a:hover {
+                text-decoration: underline;
+            }
+
+            /* ---------- sections ---------- */
+            section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 30px 20px;
+                border-bottom: 1px solid lightgray;
+            }
+
+            section h2 {
+                border-bottom: 2px solid darkseagreen;
+                margin-bottom: 12px;
+                padding-bottom: 3px;
+            }
+
+            h3 {
+                margin-top: 14px;
+            }
+
+            p {
+                margin: 6px 0;
+            }
+
+            ul, ol {
+                margin: 6px 0 0 20px;
+            }
+
+            li {
+                margin: 3px 0;
+            }
+
+            /* ---------- home ---------- */
+            #home {
+                text-align: center;
+                background-color: honeydew;
+                border-bottom: 2px solid darkseagreen;
+                max-width: none;
+                padding: 40px 20px;
+            }
+
+            #home h2 {
+                border: none;
+                font-size: 30px;
+            }
+
+            #home article {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            /* ---------- highlight cards ---------- */
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                margin-top: 10px;
+                text-align: left;
+                max-width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .card {
+                border: 1px solid darkseagreen;
+                border-radius: 6px;
+                padding: 12px;
+                background-color: white;
+            }
+
+            .card h3 {
+                margin-top: 0;
+                font-size: 16px;
+                color: darkgreen;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            /* ---------- tables ---------- */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 8px;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+
+            th {
+                background-color: honeydew;
+            }
+
+            th, td {
+                border: 1px solid darkseagreen;
+                padding: 5px 8px;
+                text-align: left;
+            }
+
+            /* ---------- aside note ---------- */
+            aside {
+                background-color: white;
+                border: 1px solid darkseagreen;
+                border-radius: 6px;
+                padding: 10px 14px;
+                margin-top: 15px;
+                font-size: 14px;
+            }
+
+            aside h3 {
+                margin-top: 0;
+                font-size: 15px;
+            }
+
+            /* ---------- contact ---------- */
+            address {
+                font-style: normal;
+                line-height: 1.8;
+                font-size: 14px;
+            }
+
+            form {
+                max-width: 500px;
+                margin-top: 10px;
+            }
+
+            fieldset {
+                border: 1px solid darkseagreen;
+                border-radius: 6px;
+                padding: 12px 15px;
+            }
+
+            legend {
+                font-weight: bold;
+                padding: 0 5px;
+            }
+
+            label {
+                display: block;
+                margin-top: 10px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            input, select, textarea {
+                width: 100%;
+                padding: 6px 8px;
+                margin-top: 3px;
+                font-family: inherit;
+                font-size: 14px;
+                border: 1px solid darkseagreen;
+                border-radius: 4px;
+            }
+
+            textarea {
+                resize: vertical;
+            }
+
+            button {
+                margin-top: 14px;
+                padding: 8px 20px;
+                font-size: 14px;
+                font-weight: bold;
+                color: white;
+                background-color: darkgreen;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: seagreen;
+            }
+
+            footer {
+                text-align: center;
+                background-color: honeydew;
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            /* ---------- small screens ---------- */
+            @media (max-width: 700px) {
+                nav ul {
+                    gap: 12px;
+                }
+
+                header h1 {
+                    font-size: 20px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Department of Computer Science</h1>
+            <p class="tagline">Alliance School of Advanced Computing, Bangalore</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#faculty">Faculty</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- home -->
+            <section id="home">
+                <h2>Welcome</h2>
+                <article>
+                    <p class="tagline">Learn. Build. Innovate.</p>
+                    <p>
+                        The Department of Computer Science was started in 2005 and offers both
+                        undergraduate and postgraduate programmes. We run six labs, an AI and
+                        cyber security research cell, and an industry interaction wing. The
+                        department has 18 full time faculty members and around 600 students.
+                    </p>
+                </article>
+
+                <h3>Highlights</h3>
+                <div class="grid">
+                    <article class="card">
+                        <h3>96% Placement</h3>
+                        <p>2025 batch placed across product and service companies, highest package 24 LPA.</p>
+                    </article>
+                    <article class="card">
+                        <h3>6 Labs</h3>
+                        <p>AI/ML, Networking, Cyber Security, IoT, Cloud and Full Stack labs.</p>
+                    </article>
+                    <article class="card">
+                        <h3>40+ Papers</h3>
+                        <p>Faculty and student papers published in Scopus indexed journals since 2022.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Coding Club</h3>
+                        <p>Weekly contests, open source Saturdays and a 24 hour hackathon every year.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- about -->
+            <section id="about">
+                <h2>About the Department</h2>
+
+                <article>
+                    <h3>Vision</h3>
+                    <p>
+                        To be a centre of excellence in computer science education and research, and to
+                        produce professionals who are technically strong and socially responsible.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Mission</h3>
+                    <ul>
+                        <li>Teach a syllabus that keeps up with current industry practice.</li>
+                        <li>Encourage research, innovation and entrepreneurship.</li>
+                        <li>Build industry tie ups through internships and live projects.</li>
+                        <li>Promote ethics, teamwork and lifelong learning.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Objectives</h3>
+                    <ol>
+                        <li>Build problem solving skills in algorithms, systems and software design.</li>
+                        <li>Give practical exposure through lab work, mini projects and internships.</li>
+                        <li>Improve communication and leadership along with technical skills.</li>
+                        <li>Support students who go for certifications or higher studies.</li>
+                        <li>Give back to the community through technical outreach programmes.</li>
+                    </ol>
+                </article>
+            </section>
+
+            <!-- faculty -->
+            <section id="faculty">
+                <h2>Faculty</h2>
+                <p>List of teaching staff with their designations and the subjects they handle.</p>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Qualification</th>
+                        <th>Subjects Handled</th>
+                    </tr>
+                    <tr>
+                        <td>Dr. R. Meenakshi</td>
+                        <td>Professor and Head</td>
+                        <td>Ph.D., Computer Science</td>
+                        <td>Data Structures, Analysis of Algorithms</td>
+                    </tr>
+                    <tr>
+                        <td>Dr. S. Karthikeyan</td>
+                        <td>Professor</td>
+                        <td>Ph.D., Machine Learning</td>
+                        <td>Artificial Intelligence, Machine Learning</td>
+                    </tr>
+                    <tr>
+                        <td>Dr. A. Fathima Noor</td>
+                        <td>Associate Professor</td>
+                        <td>Ph.D., Network Security</td>
+                        <td>Computer Networks, Cryptography</td>
+                    </tr>
+                    <tr>
+                        <td>Mr. V. Praveen Kumar</td>
+                        <td>Assistant Professor</td>
+                        <td>M.Tech., Software Engineering</td>
+                        <td>Front End Frameworks, Web Technologies</td>
+                    </tr>
+                    <tr>
+                        <td>Ms. D. Anitha</td>
+                        <td>Assistant Professor</td>
+                        <td>M.E., Computer Science</td>
+                        <td>DBMS, Big Data Analytics</td>
+                    </tr>
+                    <tr>
+                        <td>Mr. J. Samuel Roshan</td>
+                        <td>Assistant Professor</td>
+                        <td>M.Tech., Cloud Computing</td>
+                        <td>Operating Systems, Cloud Computing</td>
+                    </tr>
+                    <tr>
+                        <td>Ms. P. Lakshmi Priya</td>
+                        <td>Lab Instructor</td>
+                        <td>M.Sc., Computer Science</td>
+                        <td>Programming Lab, DBMS Lab</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- courses -->
+            <section id="courses">
+                <h2>Courses</h2>
+
+                <article>
+                    <h3>BCS (Bachelor of Computer Science)</h3>
+                    <p>
+                        Three year full time programme with six semesters and 140 credits. Every
+                        semester has four theory papers and one lab course.
+                    </p>
+                </article>
+
+                <h3>Semester Wise Subjects</h3>
+                <table>
+                    <tr>
+                        <th>Semester</th>
+                        <th>Subjects</th>
+                        <th>Lab</th>
+                    </tr>
+                    <tr>
+                        <td>Semester 1</td>
+                        <td>Programming in C, Digital Fundamentals, Discrete Mathematics, Communicative English</td>
+                        <td>C Programming Lab</td>
+                    </tr>
+                    <tr>
+                        <td>Semester 2</td>
+                        <td>C++ and OOPs, Data Structures, Computer Organisation, Statistics</td>
+                        <td>Data Structures Lab</td>
+                    </tr>
+                    <tr>
+                        <td>Semester 3</td>
+                        <td>Java Programming, DBMS, Operating Systems, Front End Frameworks</td>
+                        <td>Java and DBMS Lab</td>
+                    </tr>
+                    <tr>
+                        <td>Semester 4</td>
+                        <td>Computer Networks, Software Engineering, Python, Analysis of Algorithms</td>
+                        <td>Networks and Python Lab</td>
+                    </tr>
+                    <tr>
+                        <td>Semester 5</td>
+                        <td>Artificial Intelligence, Web Technologies, Cloud Computing, Cyber Security</td>
+                        <td>Web Technologies Lab</td>
+                    </tr>
+                    <tr>
+                        <td>Semester 6</td>
+                        <td>Machine Learning, Big Data Analytics, Elective (Mobile / IoT / DevOps), Project Work</td>
+                        <td>Major Project and Viva</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- timetable -->
+            <section id="timetable">
+                <h2>Timetable</h2>
+
+                <h3>Class Timetable (BCS Semester 3)</h3>
+                <table>
+                    <tr>
+                        <th>Day</th>
+                        <th>9:00 - 10:00</th>
+                        <th>10:00 - 11:00</th>
+                        <th>11:15 - 12:15</th>
+                        <th>1:15 - 2:15</th>
+                        <th>2:15 - 3:15</th>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>Java</td>
+                        <td>DBMS</td>
+                        <td>Operating Systems</td>
+                        <td>Front End Frameworks</td>
+                        <td>Mentoring</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>DBMS</td>
+                        <td>Front End Frameworks</td>
+                        <td colspan="2">Java Lab</td>
+                        <td>Operating Systems</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>Operating Systems</td>
+                        <td>Java</td>
+                        <td>DBMS</td>
+                        <td>Soft Skills</td>
+                        <td>Library</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>Front End Frameworks</td>
+                        <td>Operating Systems</td>
+                        <td colspan="2">DBMS Lab</td>
+                        <td>Java</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>Java</td>
+                        <td>DBMS</td>
+                        <td>Front End Frameworks</td>
+                        <td>Aptitude Class</td>
+                        <td>Club Activity</td>
+                    </tr>
+                </table>
+
+                <h3>Lab Schedule</h3>
+                <table>
+                    <tr>
+                        <th>Lab</th>
+                        <th>Day</th>
+                        <th>Timing</th>
+                        <th>Room</th>
+                        <th>In Charge</th>
+                    </tr>
+                    <tr>
+                        <td>Java Lab</td>
+                        <td>Tuesday</td>
+                        <td>11:15 - 1:15</td>
+                        <td>Lab 201</td>
+                        <td>Mr. V. Praveen Kumar</td>
+                    </tr>
+                    <tr>
+                        <td>DBMS Lab</td>
+                        <td>Thursday</td>
+                        <td>11:15 - 1:15</td>
+                        <td>Lab 202</td>
+                        <td>Ms. D. Anitha</td>
+                    </tr>
+                    <tr>
+                        <td>Web Technologies Lab</td>
+                        <td>Wednesday</td>
+                        <td>2:15 - 4:15</td>
+                        <td>Lab 305</td>
+                        <td>Mr. V. Praveen Kumar</td>
+                    </tr>
+                    <tr>
+                        <td>Networks Lab</td>
+                        <td>Monday</td>
+                        <td>2:15 - 4:15</td>
+                        <td>Lab 304</td>
+                        <td>Dr. A. Fathima Noor</td>
+                    </tr>
+                    <tr>
+                        <td>AI / ML Lab</td>
+                        <td>Friday</td>
+                        <td>10:00 - 12:00</td>
+                        <td>Lab 401</td>
+                        <td>Dr. S. Karthikeyan</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- achievements -->
+            <section id="achievements">
+                <h2>Achievements</h2>
+
+                <article>
+                    <h3>Student Achievements</h3>
+                    <ul>
+                        <li>Team ByteForce won the Smart India Hackathon 2025 national finals in the Smart Automation theme.</li>
+                        <li>Two teams qualified for the ACM ICPC Amritapuri regional round in 2024.</li>
+                        <li>Three students were selected as contributors for Google Summer of Code 2025.</li>
+                        <li>Five students placed in the top ten of the university merit list for 2024-25.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Faculty Achievements</h3>
+                    <ul>
+                        <li>Dr. S. Karthikeyan won the Best Paper Award at ICACCI 2024 for his work on federated learning.</li>
+                        <li>Dr. A. Fathima Noor received a patent for a lightweight IoT authentication protocol.</li>
+                        <li>Dr. R. Meenakshi got a research grant of Rs. 18 lakh from the Department of Science and Technology.</li>
+                        <li>Mr. J. Samuel Roshan cleared the AWS Solutions Architect Professional certification.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Department Recognitions</h3>
+                    <table>
+                        <tr>
+                            <th>Year</th>
+                            <th>Recognition</th>
+                            <th>Awarded By</th>
+                        </tr>
+                        <tr>
+                            <td>2025</td>
+                            <td>Best Department for Industry Interaction</td>
+                            <td>University Academic Council</td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>NBA accreditation renewed for six years</td>
+                            <td>National Board of Accreditation</td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Innovation Council 4 star rating</td>
+                            <td>Ministry of Education</td>
+                        </tr>
+                    </table>
+                </article>
+            </section>
+
+            <!-- events -->
+            <section id="events">
+                <h2>Events</h2>
+
+                <article>
+                    <h3>Workshops</h3>
+                    <ul>
+                        <li><time datetime="2026-09-12">12 September 2026</time> - Responsive layouts with modern CSS, Lab 305.</li>
+                        <li><time datetime="2026-10-03">3 October 2026</time> - Docker and Kubernetes basics, Lab 401.</li>
+                        <li><time datetime="2026-11-14">14 November 2026</time> - Practical penetration testing, Cyber Security Lab.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Seminars</h3>
+                    <ul>
+                        <li><time datetime="2026-09-25">25 September 2026</time> - Careers in Applied AI, by an engineering manager from a product company.</li>
+                        <li><time datetime="2026-10-18">18 October 2026</time> - Research options after graduation, alumni panel.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Hackathons</h3>
+                    <table>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Duration</th>
+                            <th>Theme</th>
+                        </tr>
+                        <tr>
+                            <td>CodeStorm 2026</td>
+                            <td><time datetime="2026-10-24">24 October 2026</time></td>
+                            <td>24 hours</td>
+                            <td>Open Innovation</td>
+                        </tr>
+                        <tr>
+                            <td>HackForGood</td>
+                            <td><time datetime="2026-12-05">5 December 2026</time></td>
+                            <td>36 hours</td>
+                            <td>Social Impact</td>
+                        </tr>
+                    </table>
+                </article>
+
+                <aside>
+                    <h3>Registration</h3>
+                    <p>
+                        Registration opens two weeks before each event and closes once the seats are
+                        full. Use the contact form below to book a slot.
+                    </p>
+                </aside>
+            </section>
+
+            <!-- contact -->
+            <section id="contact">
+                <h2>Contact</h2>
+
+                <article>
+                    <h3>Address</h3>
+                    <address>
+                        Department of Computer Science<br>
+                        Alliance School of Advanced Computing<br>
+                        Chandapura - Anekal Main Road, Anekal<br>
+                        Bangalore 562106, Karnataka, India<br>
+                        Phone: <a href="tel:+918012345678">+91 80 1234 5678</a><br>
+                        Email: <a href="mailto:cs.department@example.edu">cs.department@example.edu</a>
+                    </address>
+                    <p style="margin-top:10px;">Office hours: Monday to Friday, 9:00 am to 4:30 pm.</p>
+                </article>
+
+                <article>
+                    <h3>Contact Form</h3>
+                    <form>
+                        <fieldset>
+                            <legend>Send a Message</legend>
+
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. John Michael Smith" required>
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select Subject</option>
+                                <option value="admission">Admission Enquiry</option>
+                                <option value="courses">Course Details</option>
+                                <option value="events">Event Registration</option>
+                                <option value="placement">Placement Enquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Type your message here" required></textarea>
+
+                            <button type="submit">Send</button>
+                        </fieldset>
+                    </form>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built with plain HTML and CSS by Niraad Siddharth Bhuva.</p>
+        </footer>
+    </body>
+</html>
