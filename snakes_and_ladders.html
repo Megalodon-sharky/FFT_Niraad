@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snakes and Ladders</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .game-board {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 4px solid #333;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            width: 100%;
+            height: 100%;
+        }
+
+        .square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .svg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Snake styling */
+        .snake {
+            fill: none;
+            stroke: #ef4444;
+            /* Red snake body */
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .snake-head {
+            fill: #ef4444;
+        }
+
+        /* Ladder styling */
+        .ladder-rail {
+            fill: none;
+            stroke: #d97706;
+            /* Amber ladder */
+            stroke-width: 6;
+            stroke-linecap: round;
+        }
+
+        .ladder-rung {
+            fill: none;
+            stroke: #d97706;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-board">
+        <div class="grid" id="grid"></div>
+        <svg class="svg-overlay" id="svg-overlay" viewBox="0 0 500 500"></svg>
+    </div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const svg = document.getElementById('svg-overlay');
+        const size = 10;
+        const squareSize = 50; // 500px / 10
+
+        // Generate Grid
+        let cells = [];
+        for (let row = 0; row < size; row++) {
+            for (let col = 0; col < size; col++) {
+                let num;
+                // Calculate boustrophedon number
+                let realRow = size - 1 - row; // 0 at bottom, 9 at top
+                if (realRow % 2 === 0) {
+                    // Left to right
+                    num = realRow * size + col + 1;
+                } else {
+                    // Right to left
+                    num = realRow * size + (size - 1 - col) + 1;
+                }
+
+                const square = document.createElement('div');
+                square.className = 'square';
+                square.textContent = num;
+
+                // Color alternate logic using a repeating pastel palette
+                const colors = ['#fde68a', '#fecaca', '#bbf7d0', '#bfdbfe']; // Yellow, Red, Green, Blue
+                square.style.backgroundColor = colors[(row * size + col) % 4];
+
+                grid.appendChild(square);
+
+                // Store cell coordinates (center of square)
+                cells[num] = {
+                    x: col * squareSize + squareSize / 2,
+                    y: row * squareSize + squareSize / 2
+                };
+            }
+        }
+
+        // Snakes and Ladders configurations
+        const ladders = [
+            [4, 14], [9, 31], [21, 42], [28, 84], [51, 67], [71, 91], [80, 100]
+        ];
+
+        const snakes = [
+            [17, 7], [54, 34], [62, 19], [64, 60], [87, 24], [93, 73], [95, 75], [98, 79]
+        ];
+
+        // Draw Ladders
+        ladders.forEach(([start, end]) => {
+            const p1 = cells[start];
+            const p2 = cells[end];
+
+            // Calculate direction vector
+            const dx = p2.x - p1.x;
+            const dy = p2.y - p1.y;
+            const len = Math.sqrt(dx * dx + dy * dy);
+            const nx = -dy / len * 12; // Normal vector scaled by offset
+            const ny = dx / len * 12;
+
+            // Rail 1
+            const rail1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            rail1.setAttribute('x1', p1.x + nx);
+            rail1.setAttribute('y1', p1.y + ny);
+            rail1.setAttribute('x2', p2.x + nx);
+            rail1.setAttribute('y2', p2.y + ny);
+            rail1.setAttribute('class', 'ladder-rail');
+            svg.appendChild(rail1);
+
+            // Rail 2
+            const rail2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            rail2.setAttribute('x1', p1.x - nx);
+            rail2.setAttribute('y1', p1.y - ny);
+            rail2.setAttribute('x2', p2.x - nx);
+            rail2.setAttribute('y2', p2.y - ny);
+            rail2.setAttribute('class', 'ladder-rail');
+            svg.appendChild(rail2);
+
+            // Rungs
+            const numRungs = Math.floor(len / 18);
+            for (let i = 1; i <= numRungs; i++) {
+                const fraction = i / (numRungs + 1);
+                const mx = p1.x + dx * fraction;
+                const my = p1.y + dy * fraction;
+
+                const rung = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                rung.setAttribute('x1', mx + nx);
+                rung.setAttribute('y1', my + ny);
+                rung.setAttribute('x2', mx - nx);
+                rung.setAttribute('y2', my - ny);
+                rung.setAttribute('class', 'ladder-rung');
+                svg.appendChild(rung);
+            }
+        });
+
+        // Draw Snakes
+        snakes.forEach(([start, end]) => {
+            const p1 = cells[start]; // Head
+            const p2 = cells[end];   // Tail
+
+            const dx = p2.x - p1.x;
+            const dy = p2.y - p1.y;
+            const len = Math.sqrt(dx * dx + dy * dy);
+
+            // Create a curved path for the snake body using a Bezier curve
+            const midX = (p1.x + p2.x) / 2;
+            const midY = (p1.y + p2.y) / 2;
+            const offset = len * 0.35; // Curve amount
+
+            // Alternate curve direction based on snake length to make it look organic
+            const direction = len % 3 === 0 ? 1 : -1;
+            const nx = -dy / len * offset * direction;
+            const ny = dx / len * offset * direction;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${p1.x} ${p1.y} Q ${midX + nx} ${midY + ny} ${p2.x} ${p2.y}`);
+            path.setAttribute('class', 'snake');
+            svg.appendChild(path);
+
+            // Draw a circle for the head
+            const head = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            head.setAttribute('cx', p1.x);
+            head.setAttribute('cy', p1.y);
+            head.setAttribute('r', 10);
+            head.setAttribute('class', 'snake-head');
+            svg.appendChild(head);
+
+            // Add tiny eyes
+            const eye1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            eye1.setAttribute('cx', p1.x - 4);
+            eye1.setAttribute('cy', p1.y - 3);
+            eye1.setAttribute('r', 2);
+            eye1.setAttribute('fill', '#fff');
+            svg.appendChild(eye1);
+
+            const eye2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            eye2.setAttribute('cx', p1.x + 4);
+            eye2.setAttribute('cy', p1.y - 3);
+            eye2.setAttribute('r', 2);
+            eye2.setAttribute('fill', '#fff');
+            svg.appendChild(eye2);
+        });
+
+    </script>
+</body>
+
+</html>
