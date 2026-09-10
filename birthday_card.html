@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Birthday Card</title>
+    <style>
+        :root {
+            --pink: #ff6f91;
+            --purple: #8e6bd8;
+            --yellow: #ffc75f;
+            --cream: #fff6ef;
+            --ink: #3d2b45;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background: #fdeef4;
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            color: var(--ink);
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -140px;
+            width: 54px;
+            height: 68px;
+            border-radius: 50% 50% 50% 50% / 46% 46% 60% 60%;
+            opacity: .55;
+            animation: floatUp 9s linear infinite;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 1px;
+            height: 60px;
+            background: rgba(61, 43, 69, .3);
+        }
+
+        .balloon:nth-child(1) { left: 8%;  background: var(--pink);   animation-delay: 0s; }
+        .balloon:nth-child(2) { left: 22%; background: var(--yellow); animation-delay: 2.5s; }
+        .balloon:nth-child(3) { left: 74%; background: var(--purple); animation-delay: 1.2s; }
+        .balloon:nth-child(4) { left: 88%; background: var(--pink);   animation-delay: 4s; }
+
+        @keyframes floatUp {
+            0%   { transform: translateY(0) rotate(-4deg); }
+            100% { transform: translateY(-115vh) rotate(4deg); }
+        }
+
+        .confetti {
+            position: absolute;
+            top: -20px;
+            width: 9px;
+            height: 14px;
+            opacity: .8;
+            animation: fall 6s linear infinite;
+        }
+
+        .confetti:nth-of-type(1) { left: 18%; background: var(--pink);   animation-delay: .4s; }
+        .confetti:nth-of-type(2) { left: 38%; background: var(--purple); animation-delay: 2.1s; }
+        .confetti:nth-of-type(3) { left: 58%; background: var(--yellow); animation-delay: 1.3s; }
+        .confetti:nth-of-type(4) { left: 80%; background: var(--purple); animation-delay: 3.2s; }
+
+        @keyframes fall {
+            0%   { transform: translateY(0) rotate(0); }
+            100% { transform: translateY(105vh) rotate(540deg); }
+        }
+
+        .card {
+            position: relative;
+            width: 360px;
+            padding: 36px 30px 30px;
+            text-align: center;
+            background: var(--cream);
+            border-radius: 18px;
+            box-shadow: 0 14px 34px rgba(61, 43, 69, .18);
+            animation: riseIn .8s ease-out both;
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 22px 46px rgba(61, 43, 69, .26);
+        }
+
+        @keyframes riseIn {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: 32px;
+            color: var(--pink);
+            animation: riseIn .8s ease-out .2s both;
+        }
+
+        .sub {
+            margin: 0 0 22px;
+            font-size: 14px;
+            color: #7a6580;
+            animation: riseIn .8s ease-out .4s both;
+        }
+
+        .cake {
+            width: 170px;
+            margin: 0 auto 24px;
+            animation: riseIn .8s ease-out .3s both;
+        }
+
+        .candles {
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            margin-bottom: 4px;
+        }
+
+        .candle {
+            position: relative;
+            width: 8px;
+            height: 34px;
+            border-radius: 3px;
+            background: repeating-linear-gradient(45deg, #fff 0 4px, var(--pink) 4px 8px);
+        }
+
+        .flame {
+            position: absolute;
+            left: 50%;
+            top: -17px;
+            width: 12px;
+            height: 17px;
+            margin-left: -6px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: var(--yellow);
+            box-shadow: 0 0 12px 3px rgba(255, 199, 95, .8);
+            transform-origin: bottom center;
+            animation: flicker .9s ease-in-out infinite alternate;
+        }
+
+        .candle:nth-child(2) .flame { animation-delay: .3s; }
+        .candle:nth-child(3) .flame { animation-delay: .6s; }
+
+        @keyframes flicker {
+            from { transform: scale(1) rotate(-4deg);   opacity: .85; }
+            to   { transform: scale(1.18) rotate(4deg); opacity: 1; }
+        }
+
+        .icing {
+            height: 26px;
+            border-radius: 12px 12px 6px 6px;
+            background: var(--pink);
+        }
+
+        .layer {
+            height: 54px;
+            border-radius: 0 0 10px 10px;
+            background: var(--purple);
+        }
+
+        .btn {
+            padding: 11px 26px;
+            font: inherit;
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+            background: var(--purple);
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            animation: riseIn .8s ease-out .5s both;
+            transition: background-color .25s ease, transform .25s ease;
+        }
+
+        .btn:hover {
+            background: var(--pink);
+            transform: scale(1.07);
+        }
+
+        .btn:active { transform: scale(.97); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <i class="confetti"></i>
+    <i class="confetti"></i>
+    <i class="confetti"></i>
+    <i class="confetti"></i>
+
+    <div class="card">
+        <div class="cake">
+            <div class="candles">
+                <div class="candle"><span class="flame"></span></div>
+                <div class="candle"><span class="flame"></span></div>
+                <div class="candle"><span class="flame"></span></div>
+            </div>
+            <div class="icing"></div>
+            <div class="layer"></div>
+        </div>
+
+        <h1>Happy Birthday!</h1>
+        <p class="sub">Wishing you a wonderful year ahead.</p>
+
+        <button class="btn" type="button">Make a Wish</button>
+    </div>
+</body>
+
+</html>

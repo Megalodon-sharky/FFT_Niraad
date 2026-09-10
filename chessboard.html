@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chessboard</title>
+    <style>
+        :root {
+            --light: #f0d9b5;
+            --dark: #b58863;
+            --edge: #6b4a30;
+            --page: #f4efe7;
+            --label: #5b4632;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            padding: 32px 16px;
+            background: var(--page);
+            color: var(--label);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        .board {
+            border-collapse: collapse;
+            border: 10px solid var(--edge);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .28);
+        }
+
+        .board td {
+            width: 68px;
+            height: 68px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 46px;
+            line-height: 1;
+            background: var(--dark);
+        }
+
+        /* Files run a..h left to right, so a8 (top-left) must be light.
+           The rank label is child 1 of each row, which shifts the squares to
+           child positions 2..9 and flips the usual odd/even pairing. */
+        .board tr:nth-child(even) td:nth-child(even),
+        .board tr:nth-child(odd) td:nth-child(odd) {
+            background: var(--light);
+        }
+
+        /* Both colours use the solid glyphs; the outlined ones render too thin. */
+        .w { color: #fff; text-shadow: 0 0 2px #000, 0 1px 2px rgba(0, 0, 0, .55); }
+        .b { color: #1a1a1a; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+
+        .board th {
+            width: 26px;
+            height: 26px;
+            font-size: 13px;
+            font-weight: normal;
+            color: var(--label);
+            background: var(--page);
+        }
+
+        caption {
+            caption-side: bottom;
+            padding-top: 12px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        @media (max-width: 700px) {
+            .board td { width: 38px; height: 38px; font-size: 26px; }
+            .board th { width: 18px; height: 18px; font-size: 11px; }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chessboard</h1>
+
+    <table class="board">
+        <caption>Standard starting position</caption>
+
+        <tr>
+            <th></th>
+            <th>a</th><th>b</th><th>c</th><th>d</th>
+            <th>e</th><th>f</th><th>g</th><th>h</th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <th>8</th>
+            <td class="b">&#9820;</td><td class="b">&#9822;</td><td class="b">&#9821;</td><td class="b">&#9819;</td>
+            <td class="b">&#9818;</td><td class="b">&#9821;</td><td class="b">&#9822;</td><td class="b">&#9820;</td>
+            <th>8</th>
+        </tr>
+
+        <tr>
+            <th>7</th>
+            <td class="b">&#9823;</td><td class="b">&#9823;</td><td class="b">&#9823;</td><td class="b">&#9823;</td>
+            <td class="b">&#9823;</td><td class="b">&#9823;</td><td class="b">&#9823;</td><td class="b">&#9823;</td>
+            <th>7</th>
+        </tr>
+
+        <tr>
+            <th>6</th>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <th>6</th>
+        </tr>
+
+        <tr>
+            <th>5</th>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <th>5</th>
+        </tr>
+
+        <tr>
+            <th>4</th>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <th>4</th>
+        </tr>
+
+        <tr>
+            <th>3</th>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <th>3</th>
+        </tr>
+
+        <tr>
+            <th>2</th>
+            <td class="w">&#9823;</td><td class="w">&#9823;</td><td class="w">&#9823;</td><td class="w">&#9823;</td>
+            <td class="w">&#9823;</td><td class="w">&#9823;</td><td class="w">&#9823;</td><td class="w">&#9823;</td>
+            <th>2</th>
+        </tr>
+
+        <tr>
+            <th>1</th>
+            <td class="w">&#9820;</td><td class="w">&#9822;</td><td class="w">&#9821;</td><td class="w">&#9819;</td>
+            <td class="w">&#9818;</td><td class="w">&#9821;</td><td class="w">&#9822;</td><td class="w">&#9820;</td>
+            <th>1</th>
+        </tr>
+
+        <tr>
+            <th></th>
+            <th>a</th><th>b</th><th>c</th><th>d</th>
+            <th>e</th><th>f</th><th>g</th><th>h</th>
+            <th></th>
+        </tr>
+    </table>
+</body>
+
+</html>
