@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TechNova 2026, the annual technical symposium of the Department of Computer Science. Schedule, speakers, venue and registration.">
+    <title>TechNova 2026 | College Tech Symposium</title>
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e3a8a;
+            --primary-soft: #eef3ff;
+            --text: #1f2937;
+            --muted: #5b6472;
+            --border: #e2e6ee;
+            --field-border: #cdd4df;
+            --bg-alt: #f6f8fb;
+            --radius: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text);
+            background: #fff;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            line-height: 1.25;
+            text-wrap: balance;
+        }
+
+        p {
+            margin: 0 0 12px;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        .nowrap {
+            white-space: nowrap;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- header + nav ---------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-bar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 64px;
+        }
+
+        .brand {
+            line-height: 64px;
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        .site-nav ul {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .site-nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .site-nav a:hover {
+            color: var(--primary);
+        }
+
+        .site-nav .nav-cta {
+            padding: 8px 16px;
+            color: #fff;
+            background: var(--primary);
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .site-nav .nav-cta:hover {
+            color: #fff;
+            background: var(--primary-dark);
+        }
+
+        /* checkbox + label make the mobile menu button, no JavaScript needed */
+        .nav-toggle {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .nav-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button span,
+        .nav-button span::before,
+        .nav-button span::after {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .nav-button span {
+            position: relative;
+        }
+
+        .nav-button span::before,
+        .nav-button span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-button span::before {
+            top: -6px;
+        }
+
+        .nav-button span::after {
+            top: 6px;
+        }
+
+        .nav-toggle:checked + .nav-button span {
+            background: transparent;
+        }
+
+        .nav-toggle:checked + .nav-button span::before {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle:checked + .nav-button span::after {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-toggle:focus-visible + .nav-button {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* ---------- buttons ---------- */
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            font: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.2;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid #93b4ff;
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            color: var(--text);
+            background: #fff;
+            border-color: var(--field-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-alt);
+            border-color: #aeb8c7;
+        }
+
+        .btn-light {
+            color: var(--primary-dark);
+            background: #fff;
+        }
+
+        .btn-light:hover {
+            background: var(--primary-soft);
+        }
+
+        .btn-outline {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #fff;
+        }
+
+        /* ---------- banner ---------- */
+        .banner {
+            padding: 80px 0 72px;
+            text-align: center;
+            color: #fff;
+            background: var(--primary-dark);
+        }
+
+        .kicker {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-wrap: balance;
+            color: #b9cbff;
+        }
+
+        .banner h1 {
+            font-size: 56px;
+            letter-spacing: -0.02em;
+        }
+
+        .banner-sub {
+            max-width: 640px;
+            margin: 16px auto 32px;
+            font-size: 19px;
+            text-wrap: balance;
+            color: #dbe4ff;
+        }
+
+        .banner-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 48px;
+            margin: 0 0 36px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .banner-meta span {
+            display: block;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #b9cbff;
+        }
+
+        .banner-meta strong {
+            font-size: 17px;
+        }
+
+        .banner-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .banner-note {
+            margin: 20px 0 0;
+            font-size: 14px;
+            color: #b9cbff;
+        }
+
+        /* ---------- sections ---------- */
+        .section {
+            padding: 72px 0;
+        }
+
+        .alt {
+            background: var(--bg-alt);
+        }
+
+        .section h2 {
+            margin-bottom: 12px;
+            font-size: 30px;
+        }
+
+        .section-head {
+            max-width: 640px;
+            margin-bottom: 32px;
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .list {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .list li {
+            margin-bottom: 6px;
+        }
+
+        .role {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.45;
+            color: var(--muted);
+        }
+
+        .tag {
+            display: inline-block;
+            margin-right: 8px;
+            padding: 1px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--primary-soft);
+            border-radius: 999px;
+            vertical-align: 1px;
+        }
+
+        /* ---------- event details ---------- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 0;
+        }
+
+        .details div {
+            padding: 16px 18px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .details dt {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .details dd {
+            margin: 4px 0 0;
+            font-weight: 600;
+        }
+
+        .details dd span {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        /* ---------- cards ---------- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 24px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: #c6d3f3;
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .card > p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-num {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        #highlights .card p {
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        address {
+            font-style: normal;
+        }
+
+        /* ---------- schedule ---------- */
+        .day + .day {
+            margin-top: 40px;
+        }
+
+        .day h3 {
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .day h3 span {
+            margin-left: 6px;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .table-wrap {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        /* fixed layout keeps the day 1 and day 2 columns lined up */
+        .schedule {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 15px;
+        }
+
+        .schedule th:nth-child(1) {
+            width: 190px;
+        }
+
+        .schedule th:nth-child(3) {
+            width: 28%;
+        }
+
+        .schedule th:nth-child(4) {
+            width: 17%;
+        }
+
+        .schedule th,
+        .schedule td {
+            padding: 12px 16px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .schedule thead th {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .schedule tbody tr + tr td {
+            border-top: 1px solid var(--border);
+        }
+
+        .schedule tbody tr:hover td {
+            background: #fafbff;
+        }
+
+        .schedule td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .schedule tr.break td {
+            color: var(--muted);
+            background: var(--bg-alt);
+        }
+
+        /* ---------- speakers ---------- */
+        .speaker-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .speaker-head h3 {
+            margin-bottom: 2px;
+            font-size: 17px;
+        }
+
+        .avatar {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: var(--primary-soft);
+            border-radius: 50%;
+        }
+
+        .talk {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .when {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* ---------- registration ---------- */
+        .reg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .reg-info h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .reg-info h3:not(:first-child) {
+            margin-top: 32px;
+        }
+
+        .fee-list,
+        .date-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .fee-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .fee-list strong {
+            white-space: nowrap;
+        }
+
+        .small {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .date-list li {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .date-list time {
+            flex-shrink: 0;
+            width: 64px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-card {
+            padding: 28px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .form-card h3 {
+            margin-bottom: 4px;
+            font-size: 20px;
+        }
+
+        .form-hint {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .notice {
+            display: none;
+            margin-bottom: 20px;
+            padding: 12px 14px;
+            font-size: 15px;
+            color: #14532d;
+            background: #ecfdf3;
+            border: 1px solid #b7e4c7;
+            border-radius: 8px;
+        }
+
+        /* the form submits to #registered, so the message only shows after a submit */
+        .notice:target {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 18px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        fieldset.field {
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .field label,
+        .field legend {
+            display: block;
+            margin-bottom: 6px;
+            padding: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 10px 12px;
+            font: inherit;
+            font-size: 15px;
+            color: var(--text);
+            background: #fff;
+            border: 1px solid var(--field-border);
+            border-radius: 8px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .field textarea {
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.18);
+        }
+
+        .field input:user-invalid,
+        .field select:user-invalid,
+        .field textarea:user-invalid {
+            border-color: #d64545;
+        }
+
+        .optional {
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            accent-color: var(--primary);
+        }
+
+        .pass-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .field .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            padding: 10px 12px;
+            font-size: 15px;
+            font-weight: 400;
+            border: 1px solid var(--field-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .field .option:hover {
+            border-color: var(--primary);
+        }
+
+        .field .option:has(input:checked) {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+        }
+
+        .option small {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .checks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+        }
+
+        .field .check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 15px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .agree {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .agree input {
+            margin-top: 3px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* ---------- contact ---------- */
+        .person-links a {
+            display: block;
+            overflow-wrap: anywhere;
+            text-decoration: none;
+        }
+
+        .person-links a:hover {
+            text-decoration: underline;
+        }
+
+        .person .role {
+            margin-bottom: 12px;
+        }
+
+        .contact-note {
+            margin: 28px 0 0;
+            color: var(--muted);
+        }
+
+        /* ---------- footer ---------- */
+        .site-footer {
+            padding: 28px 0;
+            font-size: 14px;
+            text-align: center;
+            color: #c9d6ff;
+            background: var(--primary-dark);
+        }
+
+        .site-footer p {
+            margin: 4px 0;
+        }
+
+        .site-footer strong {
+            color: #fff;
+        }
+
+        .to-top {
+            display: none;
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 10;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        /* fade the button in once the page is scrolled, where the browser supports it */
+        @supports (animation-timeline: scroll()) {
+            .to-top {
+                animation: show-to-top linear both;
+                animation-timeline: scroll();
+                animation-range: 0px 300px;
+            }
+        }
+
+        @keyframes show-to-top {
+            from { opacity: 0; visibility: hidden; }
+            to   { opacity: 1; visibility: visible; }
+        }
+
+        /* ---------- tablets ---------- */
+        @media (max-width: 1000px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid,
+            .reg-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .schedule {
+                font-size: 14px;
+            }
+
+            .schedule th,
+            .schedule td {
+                padding: 12px;
+            }
+
+            .schedule th:nth-child(1) {
+                width: 156px;
+            }
+
+            .schedule th:nth-child(3) {
+                width: 25%;
+            }
+
+            .schedule th:nth-child(4) {
+                width: 20%;
+            }
+        }
+
+        /* ---------- menu collapses ---------- */
+        @media (max-width: 860px) {
+            html {
+                scroll-padding-top: 0;
+            }
+
+            /* header scrolls away on small screens so an open menu never covers the page */
+            .site-header {
+                position: static;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-button {
+                display: flex;
+            }
+
+            .site-nav {
+                display: none;
+                width: 100%;
+            }
+
+            .nav-toggle:checked ~ .site-nav {
+                display: block;
+            }
+
+            .site-nav ul {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding-bottom: 16px;
+            }
+
+            .site-nav a {
+                display: block;
+                padding: 12px 4px;
+                border-top: 1px solid var(--border);
+            }
+
+            .site-nav .nav-cta {
+                margin-top: 12px;
+                padding: 12px;
+                text-align: center;
+                border-top: 0;
+            }
+
+            .to-top {
+                display: flex;
+            }
+        }
+
+        /* ---------- phones ---------- */
+        @media (max-width: 720px) {
+            .section {
+                padding: 52px 0;
+            }
+
+            .section h2 {
+                font-size: 25px;
+            }
+
+            .banner {
+                padding: 56px 0 52px;
+            }
+
+            .banner h1 {
+                font-size: 40px;
+            }
+
+            .banner-sub {
+                font-size: 17px;
+            }
+
+            .card-grid,
+            .form-grid,
+            .pass-options,
+            .checks {
+                grid-template-columns: 1fr;
+            }
+
+            /* each schedule row turns into a small card with its own labels */
+            .table-wrap {
+                overflow: visible;
+                border: 0;
+                border-radius: 0;
+            }
+
+            .schedule thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+            }
+
+            .schedule,
+            .schedule tbody,
+            .schedule tr,
+            .schedule td {
+                display: block;
+                width: 100%;
+            }
+
+            .schedule {
+                font-size: 15px;
+            }
+
+            .schedule tr {
+                margin-bottom: 10px;
+                padding: 10px 14px;
+                background: #fff;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+            }
+
+            .schedule tr.break {
+                background: var(--bg-alt);
+            }
+
+            .schedule tbody tr + tr td,
+            .schedule tbody tr:hover td,
+            .schedule tr.break td {
+                background: transparent;
+                border-top: 0;
+            }
+
+            .schedule td,
+            .schedule td:first-child {
+                position: relative;
+                width: 100%;
+                padding: 3px 0 3px 84px;
+                white-space: normal;
+            }
+
+            .schedule td::before {
+                content: attr(data-label);
+                position: absolute;
+                top: 4px;
+                left: 0;
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--muted);
+            }
+
+            .form-card {
+                padding: 22px 18px;
+            }
+
+            /* pass name on the left, price on the right */
+            .option > span {
+                display: flex;
+                flex: 1;
+                justify-content: space-between;
+            }
+
+            .option small {
+                font-size: 15px;
+            }
+
+            .form-actions .btn {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .banner h1 {
+                font-size: 34px;
+            }
+
+            .banner-meta {
+                flex-direction: column;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container nav-bar">
+            <a href="#top" class="brand">TechNova <span>2026</span></a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Show navigation menu">
+            <label for="nav-toggle" class="nav-button"><span></span></label>
+
+            <nav class="site-nav" aria-label="Main">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#highlights">Highlights</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#venue">Venue</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#register" class="nav-cta">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- banner -->
+        <section class="banner">
+            <div class="container">
+                <p class="kicker">Department of Computer Science presents</p>
+                <h1>TechNova 2026</h1>
+                <p class="banner-sub">
+                    A two day technical symposium with industry talks, hands-on workshops,
+                    a <span class="nowrap">24-hour</span> hackathon and a project expo.
+                </p>
+
+                <ul class="banner-meta">
+                    <li><span>Date</span><strong>23 – 24 October 2026</strong></li>
+                    <li><span>Venue</span><strong>Main Auditorium, Block A</strong></li>
+                    <li><span>Theme</span><strong>Building Responsible AI</strong></li>
+                </ul>
+
+                <div class="banner-actions">
+                    <a href="#register" class="btn btn-light">Register Now</a>
+                    <a href="#schedule" class="btn btn-outline">View Schedule</a>
+                </div>
+                <p class="banner-note">Online registration closes on 18 October 2026.</p>
+            </div>
+        </section>
+
+        <!-- event details -->
+        <section id="about" class="section">
+            <div class="container about-grid">
+                <div>
+                    <h2>About the Event</h2>
+                    <p>
+                        TechNova is the annual technical symposium of the Department of Computer Science.
+                        Every October it brings students from colleges across Karnataka together for two
+                        days of talks, workshops and competitions.
+                    </p>
+                    <p>
+                        The theme for 2026 is <strong>Building Responsible AI</strong>. Speakers from
+                        industry and research will talk about building software that people can trust,
+                        and the hackathon problem statements come from real needs of local communities.
+                    </p>
+                    <p>
+                        Whether you want to compete, learn a new tool or just see what other students
+                        are building, there is something here for you.
+                    </p>
+                </div>
+
+                <dl class="details">
+                    <div>
+                        <dt>Date</dt>
+                        <dd>23 – 24 October 2026<span>Friday and Saturday</span></dd>
+                    </div>
+                    <div>
+                        <dt>Time</dt>
+                        <dd>8:30 AM – 5:30 PM<span>Hackathon runs overnight</span></dd>
+                    </div>
+                    <div>
+                        <dt>Venue</dt>
+                        <dd>Main Auditorium, Block A<span>Alliance School of Advanced Computing</span></dd>
+                    </div>
+                    <div>
+                        <dt>Organised by</dt>
+                        <dd>Department of Computer Science<span>with the student Coding Club</span></dd>
+                    </div>
+                    <div>
+                        <dt>Who can attend</dt>
+                        <dd>UG and PG students<span>from any college, with a valid ID</span></dd>
+                    </div>
+                    <div>
+                        <dt>Entry</dt>
+                        <dd>Passes from ₹200<span><a href="#register">See passes and fees</a></span></dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- highlights -->
+        <section id="highlights" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Event Highlights</h2>
+                    <p>Six ways to take part over the two days.</p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <span class="card-num">01</span>
+                        <h3>24-Hour Hackathon</h3>
+                        <p>Teams of two to four build a working prototype on problem statements announced at kick-off. Mentors stay on the floor through the night.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-num">02</span>
+                        <h3>Hands-on Workshops</h3>
+                        <p>Three guided workshops on web development, cloud deployment and machine learning. Bring your own laptop.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-num">03</span>
+                        <h3>Industry Keynotes</h3>
+                        <p>Engineers and researchers talk about what they are building and what they look for when they hire freshers.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-num">04</span>
+                        <h3>Paper Presentation</h3>
+                        <p>Present your research to a panel of faculty judges. The best papers are recommended to the college journal.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-num">05</span>
+                        <h3>Project Expo</h3>
+                        <p>Show your mini or major project to visitors, faculty and recruiters. Stalls are given on a first come basis.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-num">06</span>
+                        <h3>Prizes and Certificates</h3>
+                        <p>A prize pool of ₹1,50,000 across all events, and a participation certificate for every registered student.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- schedule -->
+        <section id="schedule" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Schedule</h2>
+                    <p>All timings are in IST. Workshops run in parallel, so attend the one you registered for.</p>
+                </div>
+
+                <div class="day">
+                    <h3>Day 1 <span>Friday, 23 October 2026</span></h3>
+                    <div class="table-wrap">
+                        <table class="schedule">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Session</th>
+                                    <th scope="col">Speaker</th>
+                                    <th scope="col">Venue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="break">
+                                    <td data-label="Time">8:30 – 9:15 AM</td>
+                                    <td data-label="Session" colspan="2">Registration and breakfast</td>
+                                    <td data-label="Venue">Block A Foyer</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">9:15 – 10:00 AM</td>
+                                    <td data-label="Session"><span class="tag">Opening</span>Inauguration and welcome address</td>
+                                    <td data-label="Speaker">Dr. R. Meenakshi, Head of Department</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">10:00 – 11:00 AM</td>
+                                    <td data-label="Session"><span class="tag">Keynote</span>Building AI people can trust</td>
+                                    <td data-label="Speaker">Dr. Kavya Raghunathan</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                                <tr class="break">
+                                    <td data-label="Time">11:00 – 11:15 AM</td>
+                                    <td data-label="Session" colspan="2">Tea break</td>
+                                    <td data-label="Venue">Food Court</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">11:15 AM – 12:45 PM</td>
+                                    <td data-label="Session"><span class="tag">Workshop</span>Full stack web apps with React and Node</td>
+                                    <td data-label="Speaker">Arjun Mehta</td>
+                                    <td data-label="Venue">Lab 305</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">11:15 AM – 12:45 PM</td>
+                                    <td data-label="Session"><span class="tag">Workshop</span>Containers and cloud deployment</td>
+                                    <td data-label="Speaker">Sneha Iyer</td>
+                                    <td data-label="Venue">Lab 401</td>
+                                </tr>
+                                <tr class="break">
+                                    <td data-label="Time">12:45 – 1:45 PM</td>
+                                    <td data-label="Session" colspan="2">Lunch</td>
+                                    <td data-label="Venue">Food Court</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">2:00 PM</td>
+                                    <td data-label="Session"><span class="tag">Competition</span>Hackathon kick-off (runs for 24 hours)</td>
+                                    <td data-label="Speaker">Hackathon team</td>
+                                    <td data-label="Venue">Innovation Lab</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">2:00 – 4:00 PM</td>
+                                    <td data-label="Session"><span class="tag">Competition</span>Paper presentation</td>
+                                    <td data-label="Speaker">Faculty panel</td>
+                                    <td data-label="Venue">Seminar Hall 2</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">4:15 – 5:15 PM</td>
+                                    <td data-label="Session"><span class="tag">Panel</span>Careers in tech after graduation</td>
+                                    <td data-label="Speaker">All speakers</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <h3>Day 2 <span>Saturday, 24 October 2026</span></h3>
+                    <div class="table-wrap">
+                        <table class="schedule">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Session</th>
+                                    <th scope="col">Speaker</th>
+                                    <th scope="col">Venue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="break">
+                                    <td data-label="Time">8:30 – 9:00 AM</td>
+                                    <td data-label="Session" colspan="2">Breakfast</td>
+                                    <td data-label="Venue">Food Court</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">9:00 – 10:00 AM</td>
+                                    <td data-label="Session"><span class="tag">Keynote</span>Security lessons from real incidents</td>
+                                    <td data-label="Speaker">Farhan Qureshi</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">10:15 – 11:45 AM</td>
+                                    <td data-label="Session"><span class="tag">Workshop</span>Hands-on machine learning with Python</td>
+                                    <td data-label="Speaker">Dr. Anjali Deshpande</td>
+                                    <td data-label="Venue">Lab 401</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">10:15 AM – 12:30 PM</td>
+                                    <td data-label="Session"><span class="tag">Expo</span>Project expo, open to all visitors</td>
+                                    <td data-label="Speaker">Expo coordinators</td>
+                                    <td data-label="Venue">Block B Corridor</td>
+                                </tr>
+                                <tr class="break">
+                                    <td data-label="Time">12:30 – 1:30 PM</td>
+                                    <td data-label="Session" colspan="2">Lunch</td>
+                                    <td data-label="Venue">Food Court</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">2:00 – 3:30 PM</td>
+                                    <td data-label="Session"><span class="tag">Competition</span>Hackathon demos and judging</td>
+                                    <td data-label="Speaker">Jury panel</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">3:30 – 4:15 PM</td>
+                                    <td data-label="Session"><span class="tag">Talk</span>From college project to startup</td>
+                                    <td data-label="Speaker">Rohit Kulkarni</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Time">4:30 – 5:30 PM</td>
+                                    <td data-label="Session"><span class="tag">Closing</span>Prize distribution and valedictory</td>
+                                    <td data-label="Speaker">Chief guest</td>
+                                    <td data-label="Venue">Main Auditorium</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- speakers -->
+        <section id="speakers" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Speakers</h2>
+                    <p>Engineers, researchers and founders leading this year's talks and workshops.</p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <div class="speaker-head">
+                            <span class="avatar" aria-hidden="true">KR</span>
+                            <div>
+                                <h3>Dr. Kavya Raghunathan</h3>
+                                <p class="role">Principal Scientist, Kestrel AI Labs</p>
+                            </div>
+                        </div>
+                        <p class="talk"><span class="tag">Keynote</span>Building AI people can trust</p>
+                        <p class="when">Day 1 · 10:00 AM · Main Auditorium</p>
+                    </article>
+                    <article class="card">
+                        <div class="speaker-head">
+                            <span class="avatar" aria-hidden="true">AM</span>
+                            <div>
+                                <h3>Arjun Mehta</h3>
+                                <p class="role">Senior Software Engineer, Fabrikam Software</p>
+                            </div>
+                        </div>
+                        <p class="talk"><span class="tag">Workshop</span>Full stack web apps with React and Node</p>
+                        <p class="when">Day 1 · 11:15 AM · Lab 305</p>
+                    </article>
+                    <article class="card">
+                        <div class="speaker-head">
+                            <span class="avatar" aria-hidden="true">SI</span>
+                            <div>
+                                <h3>Sneha Iyer</h3>
+                                <p class="role">Cloud Architect, Northwind Cloud</p>
+                            </div>
+                        </div>
+                        <p class="talk"><span class="tag">Workshop</span>Containers and cloud deployment</p>
+                        <p class="when">Day 1 · 11:15 AM · Lab 401</p>
+                    </article>
+                    <article class="card">
+                        <div class="speaker-head">
+                            <span class="avatar" aria-hidden="true">FQ</span>
+                            <div>
+                                <h3>Farhan Qureshi</h3>
+                                <p class="role">Security Consultant, Redfort Security</p>
+                            </div>
+                        </div>
+                        <p class="talk"><span class="tag">Keynote</span>Security lessons from real incidents</p>
+                        <p class="when">Day 2 · 9:00 AM · Main Auditorium</p>
+                    </article>
+                    <article class="card">
+                        <div class="speaker-head">
+                            <span class="avatar" aria-hidden="true">AD</span>
+                            <div>
+                                <h3>Dr. Anjali Deshpande</h3>
+                                <p class="role">Data Science Lead, Contoso Health</p>
+                            </div>
+                        </div>
+                        <p class="talk"><span class="tag">Workshop</span>Hands-on machine learning with Python</p>
+                        <p class="when">Day 2 · 10:15 AM · Lab 401</p>
+                    </article>
+                    <article class="card">
+                        <div class="speaker-head">
+                            <span class="avatar" aria-hidden="true">RK</span>
+                            <div>
+                                <h3>Rohit Kulkarni</h3>
+                                <p class="role">Founder, Tinkerlabs Studio</p>
+                            </div>
+                        </div>
+                        <p class="talk"><span class="tag">Talk</span>From college project to startup</p>
+                        <p class="when">Day 2 · 3:30 PM · Main Auditorium</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- venue -->
+        <section id="venue" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Venue</h2>
+                    <p>All sessions are held on the main campus. Volunteers at Gate 2 will guide you to Block A.</p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Address</h3>
+                        <address>
+                            Main Auditorium, Block A<br>
+                            Alliance School of Advanced Computing<br>
+                            Chandapura - Anekal Main Road, Anekal<br>
+                            Bangalore 562106, Karnataka
+                        </address>
+                    </article>
+                    <article class="card">
+                        <h3>Getting There</h3>
+                        <ul class="list">
+                            <li>Free shuttle buses from Electronic City and Chandapura Circle every 30 minutes, 7:30 to 9:30 AM.</li>
+                            <li>Enter through Gate 2. Parking for cars and two-wheelers is right next to it.</li>
+                            <li>Reach by 8:30 AM on day 1 to collect your ID badge and event kit.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Facilities</h3>
+                        <ul class="list">
+                            <li>Free Wi-Fi for registered participants</li>
+                            <li>Food court open from 8:00 AM to 8:00 PM</li>
+                            <li>Hostel stay for outstation students at ₹300 a night</li>
+                            <li>Help desk and first aid in the Block A foyer</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- registration -->
+        <section id="register" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Registration</h2>
+                    <p>Register online before 18 October 2026. On-spot registration is open only if seats are left.</p>
+                </div>
+
+                <div class="reg-grid">
+                    <div class="reg-info">
+                        <h3>Passes and Fees</h3>
+                        <ul class="fee-list">
+                            <li><span>Day pass (day 1 or day 2)</span><strong>₹200</strong></li>
+                            <li><span>Full event pass (both days)</span><strong>₹350</strong></li>
+                            <li><span>Workshop seat (per workshop)</span><strong>₹150</strong></li>
+                            <li><span>Hackathon (per team of 2 to 4)</span><strong>₹600</strong></li>
+                        </ul>
+                        <p class="small">Every pass includes lunch, an event kit and a participation certificate.</p>
+
+                        <h3>Important Dates</h3>
+                        <ul class="date-list">
+                            <li><time datetime="2026-10-15">15 Oct</time>Last date for paper abstracts</li>
+                            <li><time datetime="2026-10-18">18 Oct</time>Online registration closes</li>
+                            <li><time datetime="2026-10-20">20 Oct</time>Shortlisted hackathon teams announced</li>
+                            <li><time datetime="2026-10-23">23 Oct</time>Event begins, reporting at 8:30 AM</li>
+                        </ul>
+
+                        <h3>Good to Know</h3>
+                        <ul class="list">
+                            <li>Pay by UPI or at the registration desk on day 1. Payment details are sent by email.</li>
+                            <li>Each workshop has 60 seats, filled on a first come basis.</li>
+                            <li>Carry your college ID card. It is checked at the entrance.</li>
+                        </ul>
+                    </div>
+
+                    <form class="form-card" action="#registered">
+                        <p id="registered" class="notice">
+                            Thank you for registering! A confirmation email with payment details will reach you shortly.
+                        </p>
+
+                        <h3>Registration Form</h3>
+                        <p class="form-hint">All fields are required unless marked optional.</p>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="name">Full name</label>
+                                <input type="text" id="name" name="name" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+91 98765 43210" required>
+                            </div>
+                            <div class="field">
+                                <label for="college">College</label>
+                                <input type="text" id="college" name="college" autocomplete="organization" required>
+                            </div>
+                            <div class="field full">
+                                <label for="year">Year of study</label>
+                                <select id="year" name="year" required>
+                                    <option value="">Select your year</option>
+                                    <option value="ug1">UG, 1st year</option>
+                                    <option value="ug2">UG, 2nd year</option>
+                                    <option value="ug3">UG, 3rd year</option>
+                                    <option value="ug4">UG, 4th year</option>
+                                    <option value="pg">PG, any year</option>
+                                </select>
+                            </div>
+
+                            <fieldset class="field full">
+                                <legend>Pass type</legend>
+                                <div class="pass-options">
+                                    <label class="option">
+                                        <input type="radio" name="pass" value="day1" required>
+                                        <span>Day 1 pass<small>₹200</small></span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="pass" value="day2" required>
+                                        <span>Day 2 pass<small>₹200</small></span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="pass" value="full" required>
+                                        <span>Full event<small>₹350</small></span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="field full">
+                                <legend>Events you want to join <span class="optional">(optional)</span></legend>
+                                <div class="checks">
+                                    <label class="check"><input type="checkbox" name="events" value="hackathon"> 24-hour hackathon</label>
+                                    <label class="check"><input type="checkbox" name="events" value="paper"> Paper presentation</label>
+                                    <label class="check"><input type="checkbox" name="events" value="web"> Workshop: React and Node</label>
+                                    <label class="check"><input type="checkbox" name="events" value="cloud"> Workshop: Cloud deployment</label>
+                                    <label class="check"><input type="checkbox" name="events" value="ml"> Workshop: Machine learning</label>
+                                    <label class="check"><input type="checkbox" name="events" value="expo"> Project expo stall</label>
+                                </div>
+                            </fieldset>
+
+                            <div class="field full">
+                                <label for="notes">Team name or other details <span class="optional">(optional)</span></label>
+                                <textarea id="notes" name="notes" rows="3" placeholder="Hackathon team name, accommodation needs, etc."></textarea>
+                            </div>
+
+                            <label class="agree full">
+                                <input type="checkbox" name="agree" required>
+                                I will carry my college ID card and follow the event rules.
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="reset" class="btn btn-secondary">Clear</button>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- contact -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Contact</h2>
+                    <p>Questions about registration, payments or the hackathon? Get in touch with the organising team.</p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card person">
+                        <h3>Mr. V. Praveen Kumar</h3>
+                        <p class="role">Faculty Coordinator</p>
+                        <p class="person-links">
+                            <a href="tel:+919876543210">+91 98765 43210</a>
+                            <a href="mailto:praveen.kumar@example.edu">praveen.kumar@example.edu</a>
+                        </p>
+                    </article>
+                    <article class="card person">
+                        <h3>Ananya Rao</h3>
+                        <p class="role">Student Coordinator</p>
+                        <p class="person-links">
+                            <a href="tel:+919876543211">+91 98765 43211</a>
+                            <a href="mailto:ananya.rao@example.edu">ananya.rao@example.edu</a>
+                        </p>
+                    </article>
+                    <article class="card person">
+                        <h3>Karan Shetty</h3>
+                        <p class="role">Hackathon Lead</p>
+                        <p class="person-links">
+                            <a href="tel:+919876543212">+91 98765 43212</a>
+                            <a href="mailto:karan.shetty@example.edu">karan.shetty@example.edu</a>
+                        </p>
+                    </article>
+                </div>
+
+                <p class="contact-note">
+                    General enquiries: <a href="mailto:technova@example.edu">technova@example.edu</a>.
+                    Department office, Block A, Room 104, Monday to Friday, 9:00 AM to 4:30 PM.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p><strong>TechNova 2026</strong> · Department of Computer Science, Alliance School of Advanced Computing, Bangalore</p>
+            <p>Built with plain HTML and CSS by Niraad Siddharth Bhuva.</p>
+        </div>
+    </footer>
+
+    <a href="#top" class="to-top" aria-label="Back to top">↑</a>
+</body>
+
+</html>
