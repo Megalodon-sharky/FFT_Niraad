@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f2f4f8;
+            color: #222;
+        }
+
+        .header {
+            background-color: #4f46e5;
+            color: white;
+            padding: 18px 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 4px 0 0 0;
+            font-size: 14px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .left {
+            width: 32%;
+        }
+
+        .right {
+            width: 68%;
+        }
+
+        .box {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .box h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 9px 18px;
+            margin-top: 15px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4f46e5;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3730a3;
+        }
+
+        .clear-btn {
+            background-color: #888;
+        }
+
+        .clear-btn:hover {
+            background-color: #666;
+        }
+
+        #msg {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .stat-box p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .stat-box h3 {
+            margin: 5px 0 0 0;
+            font-size: 22px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        #search {
+            width: 70%;
+        }
+
+        #filter {
+            width: 30%;
+        }
+
+        .table-box {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eef0ff;
+        }
+
+        #studentTable tr:hover {
+            background-color: #f5f5ff;
+            cursor: pointer;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+
+        #resultBox {
+            display: none;
+        }
+
+        #resultBox p {
+            margin: 8px 0;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .container {
+                display: block;
+            }
+
+            .left, .right {
+                width: 100%;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+            }
+
+            .stat-box {
+                flex: 1 1 40%;
+            }
+
+            #search {
+                width: 60%;
+            }
+
+            #filter {
+                width: 40%;
+            }
+
+            #studentTable {
+                min-width: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Student Result Dashboard</h1>
+        <p>Marks are out of 100 for each subject. Pass mark is 40 in every subject.</p>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <div class="box">
+                <h2>Add Student</h2>
+
+                <label for="studentName">Student Name</label>
+                <input type="text" id="studentName" placeholder="Enter name">
+
+                <label for="rollNo">Roll Number</label>
+                <input type="text" id="rollNo" placeholder="Enter roll number">
+
+                <label for="htmlMarks">HTML Marks</label>
+                <input type="number" id="htmlMarks" placeholder="Out of 100">
+
+                <label for="cssMarks">CSS Marks</label>
+                <input type="number" id="cssMarks" placeholder="Out of 100">
+
+                <label for="jsMarks">JavaScript Marks</label>
+                <input type="number" id="jsMarks" placeholder="Out of 100">
+
+                <button onclick="addStudent()">Show Result</button>
+                <button class="clear-btn" onclick="clearForm()">Clear</button>
+
+                <p id="msg"></p>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="stats">
+                <div class="stat-box">
+                    <p>Total Students</p>
+                    <h3 id="totalStudents">0</h3>
+                </div>
+                <div class="stat-box">
+                    <p>Passed</p>
+                    <h3 id="passCount">0</h3>
+                </div>
+                <div class="stat-box">
+                    <p>Failed</p>
+                    <h3 id="failCount">0</h3>
+                </div>
+                <div class="stat-box">
+                    <p>Class Average</p>
+                    <h3 id="average">0%</h3>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>Student List</h2>
+                <div class="search-row">
+                    <input type="text" id="search" placeholder="Search by name or roll number" onkeyup="showTable()">
+                    <select id="filter" onchange="showTable()">
+                        <option value="All">Show All</option>
+                        <option value="Pass">Pass Only</option>
+                        <option value="Fail">Fail Only</option>
+                    </select>
+                </div>
+
+                <div class="table-box">
+                    <table id="studentTable">
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Name</th>
+                            <th>HTML</th>
+                            <th>CSS</th>
+                            <th>JS</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                            <th>Result</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="box" id="resultBox">
+                <h2>Result</h2>
+                <p><b>Name:</b> <span id="rName"></span></p>
+                <p><b>Roll Number:</b> <span id="rRoll"></span></p>
+                <table>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                    </tr>
+                    <tr>
+                        <td>HTML</td>
+                        <td id="rHtml"></td>
+                    </tr>
+                    <tr>
+                        <td>CSS</td>
+                        <td id="rCss"></td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td id="rJs"></td>
+                    </tr>
+                </table>
+                <p><b>Total:</b> <span id="rTotal"></span></p>
+                <p><b>Percentage:</b> <span id="rPer"></span></p>
+                <p><b>Grade:</b> <span id="rGrade"></span></p>
+                <p><b>Result:</b> <span id="rResult"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <p class="footer">Made by Niraad Siddharth Bhuva</p>
+
+    <script>
+        let students = [
+            { name: "Aarav Sharma", roll: "ST101", html: 85, css: 78, js: 90 },
+            { name: "Diya Patel", roll: "ST102", html: 65, css: 72, js: 68 },
+            { name: "Rahul Nair", roll: "ST103", html: 38, css: 55, js: 47 }
+        ];
+
+        function getResult(s) {
+            if (s.html >= 40 && s.css >= 40 && s.js >= 40) {
+                return "Pass";
+            } else {
+                return "Fail";
+            }
+        }
+
+        function getGrade(s) {
+            let per = (s.html + s.css + s.js) / 3;
+
+            if (getResult(s) == "Fail") {
+                return "F";
+            } else if (per >= 90) {
+                return "A+";
+            } else if (per >= 75) {
+                return "A";
+            } else if (per >= 60) {
+                return "B";
+            } else if (per >= 50) {
+                return "C";
+            } else {
+                return "D";
+            }
+        }
+
+        function addStudent() {
+            let name = document.getElementById("studentName").value.trim();
+            let roll = document.getElementById("rollNo").value.trim();
+            let html = document.getElementById("htmlMarks").value;
+            let css = document.getElementById("cssMarks").value;
+            let js = document.getElementById("jsMarks").value;
+            let msg = document.getElementById("msg");
+
+            if (name == "" || roll == "") {
+                msg.innerText = "Please enter the student name and roll number.";
+                msg.style.color = "red";
+                return;
+            }
+
+            if (html == "" || css == "" || js == "") {
+                msg.innerText = "Please enter the marks of all three subjects.";
+                msg.style.color = "red";
+                return;
+            }
+
+            html = Number(html);
+            css = Number(css);
+            js = Number(js);
+
+            if (html < 0 || html > 100 || css < 0 || css > 100 || js < 0 || js > 100) {
+                msg.innerText = "Marks should be between 0 and 100.";
+                msg.style.color = "red";
+                return;
+            }
+
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].roll.toLowerCase() == roll.toLowerCase()) {
+                    msg.innerText = "Roll number " + roll + " is already added.";
+                    msg.style.color = "red";
+                    return;
+                }
+            }
+
+            students.push({ name: name, roll: roll, html: html, css: css, js: js });
+
+            clearForm();
+            msg.innerText = name + " has been added.";
+            msg.style.color = "green";
+
+            showTable();
+            showResult(students.length - 1);
+        }
+
+        function showTable() {
+            let table = document.getElementById("studentTable");
+            let search = document.getElementById("search").value.toLowerCase();
+            let filter = document.getElementById("filter").value;
+            let count = 0;
+
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            for (let i = 0; i < students.length; i++) {
+                let s = students[i];
+                let result = getResult(s);
+
+                if (filter != "All" && filter != result) {
+                    continue;
+                }
+
+                if (s.name.toLowerCase().indexOf(search) == -1 && s.roll.toLowerCase().indexOf(search) == -1) {
+                    continue;
+                }
+
+                let row = table.insertRow();
+                row.insertCell(0).innerText = s.roll;
+                row.insertCell(1).innerText = s.name;
+                row.insertCell(2).innerText = s.html;
+                row.insertCell(3).innerText = s.css;
+                row.insertCell(4).innerText = s.js;
+                row.insertCell(5).innerText = (s.html + s.css + s.js) + "/300";
+                row.insertCell(6).innerText = getGrade(s);
+
+                let cell = row.insertCell(7);
+                cell.innerText = result;
+                cell.className = result.toLowerCase();
+
+                row.onclick = function () {
+                    showResult(i);
+                };
+
+                count++;
+            }
+
+            if (count == 0) {
+                let row = table.insertRow();
+                let cell = row.insertCell(0);
+                cell.colSpan = 8;
+                cell.innerText = "No student found.";
+            }
+
+            updateStats();
+        }
+
+        function updateStats() {
+            let pass = 0;
+            let fail = 0;
+            let totalPer = 0;
+
+            for (let i = 0; i < students.length; i++) {
+                if (getResult(students[i]) == "Pass") {
+                    pass++;
+                } else {
+                    fail++;
+                }
+                totalPer = totalPer + (students[i].html + students[i].css + students[i].js) / 3;
+            }
+
+            let avg = 0;
+            if (students.length > 0) {
+                avg = totalPer / students.length;
+            }
+
+            document.getElementById("totalStudents").innerText = students.length;
+            document.getElementById("passCount").innerText = pass;
+            document.getElementById("failCount").innerText = fail;
+            document.getElementById("average").innerText = avg.toFixed(2) + "%";
+        }
+
+        function showResult(i) {
+            let s = students[i];
+            let total = s.html + s.css + s.js;
+            let result = getResult(s);
+
+            document.getElementById("rName").innerText = s.name;
+            document.getElementById("rRoll").innerText = s.roll;
+            document.getElementById("rHtml").innerText = s.html;
+            document.getElementById("rCss").innerText = s.css;
+            document.getElementById("rJs").innerText = s.js;
+            document.getElementById("rTotal").innerText = total + "/300";
+            document.getElementById("rPer").innerText = (total / 3).toFixed(2) + "%";
+            document.getElementById("rGrade").innerText = getGrade(s);
+            document.getElementById("rResult").innerText = result;
+            document.getElementById("rResult").className = result.toLowerCase();
+
+            document.getElementById("resultBox").style.display = "block";
+        }
+
+        function clearForm() {
+            document.getElementById("studentName").value = "";
+            document.getElementById("rollNo").value = "";
+            document.getElementById("htmlMarks").value = "";
+            document.getElementById("cssMarks").value = "";
+            document.getElementById("jsMarks").value = "";
+            document.getElementById("msg").innerText = "";
+            document.getElementById("resultBox").style.display = "none";
+        }
+
+        showTable();
+    </script>
+</body>
+
+</html>
